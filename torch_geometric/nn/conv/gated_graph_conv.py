@@ -62,7 +62,7 @@ class GatedGraphConv(MessagePassing):
             raise ValueError('The number of input channels is not allowed to '
                              'be larger than the number of output channels')
 
-        if x.size(-1) < self.out_channels:
+        if x.size(-1) <= self.out_channels:
             zero = x.new_zeros(x.size(0), self.out_channels - x.size(-1))
             x = torch.cat([x, zero], dim=1)
 
